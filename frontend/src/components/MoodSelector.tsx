@@ -9,9 +9,12 @@ interface MoodSelectorProps {
 
 const moods: { id: Mood; emoji: string; label: string }[] = [
   { id: "Fresh", emoji: "🤩", label: "Fresh" },
+  { id: "Motivated", emoji: "🔥", label: "Motivated" },
   { id: "Okay", emoji: "🙂", label: "Okay" },
+  { id: "Bored", emoji: "🥱", label: "Bored" },
   { id: "Tired", emoji: "😴", label: "Tired" },
   { id: "Stressed", emoji: "😫", label: "Stressed" },
+  { id: "Anxious", emoji: "😰", label: "Anxious" },
 ];
 
 export function MoodSelector({ selected, onSelect }: MoodSelectorProps) {

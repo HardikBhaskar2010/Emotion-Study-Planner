@@ -61,7 +61,7 @@ export default function Home() {
           </div>
           <h1 className="text-4xl md:text-6xl font-display font-extrabold tracking-tight text-foreground mb-4">
             Study Smarter, <br className="hidden md:block" />
-            <span className="bg-gradient-to-r from-primary via-purple-500 to-accent bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               Not Harder
             </span>
           </h1>

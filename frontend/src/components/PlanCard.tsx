@@ -1,6 +1,21 @@
 import { motion } from "framer-motion";
-import { Clock, Battery, Coffee, Quote } from "lucide-react";
+import { 
+  Brain, 
+  Timer, 
+  Coffee, 
+  Sparkles, 
+  CheckCircle2, 
+  Layout,
+  MessageCircle
+} from "lucide-react";
 import { StudyPlan } from "@/lib/studyPlanner";
+import { 
+  Card, 
+  CardContent, 
+  CardDescription, 
+  CardHeader, 
+  CardTitle 
+} from "@/components/ui/card";
 
 interface PlanCardProps {
   plan: StudyPlan;
@@ -18,79 +33,123 @@ export function PlanCard({ plan }: PlanCardProps) {
   };
 
   const item = {
-    hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1 }
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
   };
 
   return (
-    <motion.div 
+    <motion.div
       variants={container}
       initial="hidden"
       animate="show"
-      className="w-full max-w-3xl mx-auto space-y-6"
+      className="grid gap-6 md:grid-cols-2 w-full max-w-4xl mx-auto"
       data-testid="plan-card"
     >
-      <motion.div variants={item} className="text-center mb-8">
-        <h2 className="text-3xl font-display font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-          Your Personalized Strategy
-        </h2>
-        <p className="text-muted-foreground mt-2">
-          Optimized for when you feel <span className="font-semibold text-foreground">{plan.mood.toLowerCase()}</span>
-        </p>
+      <motion.div variants={item} className="md:col-span-2">
+        <Card className="overflow-hidden border-2 border-primary/20 bg-zinc-900/40 backdrop-blur-md">
+          <CardHeader className="text-center pb-2">
+            <div className="flex justify-center mb-4">
+              <div className="p-3 rounded-2xl bg-primary/10 text-primary">
+                <Sparkles className="w-8 h-8" />
+              </div>
+            </div>
+            <CardTitle className="text-3xl font-bold tracking-tight">Your Custom Strategy</CardTitle>
+            <CardDescription className="text-lg">
+              Optimized for <span className="font-semibold text-primary">{plan.mood}</span> mood • <span className="font-semibold text-primary">{plan.daysLeft}</span> days left
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="text-center pt-0">
+            <div className="relative inline-block">
+              <MessageCircle className="absolute -left-8 -top-2 w-6 h-6 text-primary/20" />
+              <p className="italic text-muted-foreground max-w-lg mx-auto text-lg leading-relaxed">
+                "{plan.motivation}"
+              </p>
+              <MessageCircle className="absolute -right-8 -bottom-2 w-6 h-6 text-primary/20 rotate-180" />
+            </div>
+          </CardContent>
+        </Card>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Strategy Card */}
-        <motion.div variants={item} className="glass-card rounded-2xl p-6 relative overflow-hidden group" data-testid="study-type-card">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/10 transition-colors" />
-          <div className="flex items-start gap-4">
-            <div className="p-3 rounded-xl bg-primary/10 text-primary">
-              <Battery className="w-6 h-6" />
+      <motion.div variants={item}>
+        <Card className="h-full bg-zinc-900/40 border-zinc-800 hover:border-blue-500/50 transition-colors">
+          <CardHeader className="flex flex-row items-center space-x-4 space-y-0">
+            <div className="p-2 rounded-lg bg-blue-500/10 text-blue-500">
+              <Brain className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-foreground">Study Mode</h3>
-              <p className="text-2xl font-display font-bold text-primary mt-1" data-testid="study-type">{plan.studyType}</p>
+              <CardTitle className="text-xl">Focus Style</CardTitle>
+              <CardDescription>Methodology</CardDescription>
             </div>
-          </div>
-        </motion.div>
-
-        {/* Duration Card */}
-        <motion.div variants={item} className="glass-card rounded-2xl p-6 relative overflow-hidden group" data-testid="duration-card">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-blue-500/10 transition-colors" />
-          <div className="flex items-start gap-4">
-            <div className="p-3 rounded-xl bg-blue-500/10 text-blue-600">
-              <Clock className="w-6 h-6" />
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-foreground">Session Length</h3>
-              <p className="text-2xl font-display font-bold text-blue-600 mt-1" data-testid="duration">{plan.duration}</p>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Break Advice */}
-      <motion.div variants={item} className="glass-card rounded-2xl p-6 md:p-8 relative overflow-hidden border-l-4 border-l-secondary" data-testid="break-advice-card">
-        <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
-          <div className="p-4 rounded-full bg-secondary/20 text-secondary-foreground shrink-0">
-            <Coffee className="w-8 h-8" />
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-foreground mb-2">Break Strategy</h3>
-            <p className="text-lg text-muted-foreground leading-relaxed" data-testid="break-advice">
-              {plan.breakAdvice}
-            </p>
-          </div>
-        </div>
+          </CardHeader>
+          <CardContent>
+            <p className="text-lg font-medium text-foreground" data-testid="study-type">{plan.studyType}</p>
+          </CardContent>
+        </Card>
       </motion.div>
 
-      {/* Motivation Quote */}
-      <motion.div variants={item} className="bg-gradient-to-br from-accent/20 to-primary/10 rounded-2xl p-8 text-center relative" data-testid="motivation-card">
-        <Quote className="w-12 h-12 text-primary/20 absolute top-4 left-4 rotate-180" />
-        <p className="text-xl md:text-2xl font-serif italic text-foreground/80 leading-relaxed px-6" data-testid="motivation">
-          "{plan.motivation}"
-        </p>
-        <Quote className="w-12 h-12 text-primary/20 absolute bottom-4 right-4" />
+      <motion.div variants={item}>
+        <Card className="h-full bg-zinc-900/40 border-zinc-800 hover:border-orange-500/50 transition-colors">
+          <CardHeader className="flex flex-row items-center space-x-4 space-y-0">
+            <div className="p-2 rounded-lg bg-orange-500/10 text-orange-500">
+              <Timer className="w-6 h-6" />
+            </div>
+            <div>
+              <CardTitle className="text-xl">Session Timing</CardTitle>
+              <CardDescription>Pomodoro / Routine</CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <p className="text-lg font-medium text-foreground" data-testid="duration">{plan.duration}</p>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      <motion.div variants={item}>
+        <Card className="h-full bg-zinc-900/40 border-zinc-800 hover:border-green-500/50 transition-colors">
+          <CardHeader className="flex flex-row items-center space-x-4 space-y-0">
+            <div className="p-2 rounded-lg bg-green-500/10 text-green-500">
+              <Coffee className="w-6 h-6" />
+            </div>
+            <div>
+              <CardTitle className="text-xl">Break Ritual</CardTitle>
+              <CardDescription>Energy management</CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <p className="text-lg font-medium text-foreground" data-testid="break-advice">{plan.breakAdvice}</p>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      <motion.div variants={item}>
+        <Card className="h-full bg-zinc-900/40 border-zinc-800 hover:border-purple-500/50 transition-colors">
+          <CardHeader className="flex flex-row items-center space-x-4 space-y-0">
+            <div className="p-2 rounded-lg bg-purple-500/10 text-purple-500">
+              <Layout className="w-6 h-6" />
+            </div>
+            <div>
+              <CardTitle className="text-xl">Action Items</CardTitle>
+              <CardDescription>To-do list</CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-3">
+              {plan.tasks.map((task, i) => (
+                <li key={i} className="flex items-start gap-3 group">
+                  <div className="mt-1 flex-shrink-0">
+                    <CheckCircle2 className="w-4 h-4 text-primary opacity-50 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                    {task}
+                  </span>
+                </li>
+              ))}
+              {plan.tasks.length === 0 && (
+                <li className="text-sm text-muted-foreground italic">No specific tasks identified yet.</li>
+              )}
+            </ul>
+          </CardContent>
+        </Card>
       </motion.div>
     </motion.div>
   );
