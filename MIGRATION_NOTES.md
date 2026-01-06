@@ -11,7 +11,7 @@ This project has been converted from a mixed TypeScript/Express backend + React 
 ├── frontend/              ✅ NEW - Main application (use this!)
 ├── java_submission/       ✅ KEPT - Original Java implementation (reference)
 ├── README.md             ✅ NEW - Complete documentation
-├── vercel.json           ✅ NEW - Vercel deployment config
+├── vercel.json           ✅ NEW - Vercel deployment config.
 │
 ├── client/               ⚠️  OLD - Original React code (can be removed)
 ├── server/               ⚠️  OLD - Express backend (no longer needed)
