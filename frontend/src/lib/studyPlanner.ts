@@ -84,9 +84,9 @@ export function generateStudyPlan(mood: Mood, daysLeft: number): StudyPlan {
         motivation = "Steady progress wins the race.";
         tasks = ["Rotate between two subjects", "Summarize 3 pages", "Practice 10 multiple choice questions"];
     }
-  } else {
-    // Relaxed (DaysLeft > 7)
-    switch (mood) {
+} else if (isRelaxed) {
+  // Relaxed (DaysLeft > 7)
+      switch (mood) {
       case "Stressed":
       case "Anxious":
         studyType = "Foundational Confidence Building";
