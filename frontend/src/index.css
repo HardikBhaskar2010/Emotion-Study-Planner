@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark mode colors (default) */
+    --background: 222 47% 11%;
+    --foreground: 213 31% 91%;
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 263 70% 65%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 222 47% 15%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 223 47% 20%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 330 100% 71%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 215 27% 17%;
+    --input: 215 27% 17%;
+    --ring: 263 70% 65%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-zinc-900/60 backdrop-blur-xl border border-zinc-800 shadow-2xl shadow-black/50;
+  }
+  
+  .glass-card-light {
+    @apply bg-zinc-800/40 backdrop-blur-xl border border-zinc-700;
+  }
+}
